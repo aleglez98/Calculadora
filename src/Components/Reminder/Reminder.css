@@ -1,0 +1,10 @@
+
+.Reminder {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: #1a03ee;
+    height: 40%;
+    color: #f6f8f8;
+    font-size: 24px;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import Display from "../Display/Display";
 import Keys from "../Keys/keys";
 import Button from "../Button/Button";
+import Reminder from "../Reminder/Reminder";
 import './Calculator.css';
 
 class Calculator extends React.Component {
@@ -10,7 +11,8 @@ class Calculator extends React.Component {
         super();
         this.state = { 
             data : '',
-            operation : false 
+            operation : false,
+            reminder : '' 
         }
     }
 
@@ -41,7 +43,7 @@ class Calculator extends React.Component {
                     this.setState({ data: this.state.data + value, operation : true});
                 } else {
                     result = this.calculate();
-                    this.setState({ data: result + value, operation : true});
+                    this.setState({ data: result + value, operation : true, reminder : this.state.data + ' = ' + result});
                 }
                 break;
             case '-':
@@ -50,7 +52,7 @@ class Calculator extends React.Component {
                     this.setState({ data: this.state.data + value, operation : true});
                 } else {
                     result = this.calculate();
-                    this.setState({ data: result + value, operation : true});
+                    this.setState({ data: result + value, operation : true, reminder : this.state.data + ' = ' + result});
                 }
                 break;
             case '*':
@@ -59,7 +61,7 @@ class Calculator extends React.Component {
                     this.setState({ data: this.state.data + value, operation : true });
                 } else {
                     result = this.calculate();
-                    this.setState({ data: result + value, operation : true});
+                    this.setState({ data: result + value, operation : true, reminder : this.state.data + ' = ' + result});
                 }
                 break;
             case '/':
@@ -68,7 +70,7 @@ class Calculator extends React.Component {
                     this.setState({ data: this.state.data + value, operation : true});
                 } else {
                     result = this.calculate();
-                    this.setState({ data: result + value, operation : true});
+                    this.setState({ data: result + value, operation : true, reminder : this.state.data + ' = ' + result});
                 }
                 break;
             default:
@@ -79,6 +81,7 @@ class Calculator extends React.Component {
     render() {
         return(
             <div className="Calculator">
+                <Reminder data={this.state.reminder} />
                 <Display data={this.state.data} />
                 <Keys>
                     <Button onClick={this.handleClick} label="C" value="clear" />
