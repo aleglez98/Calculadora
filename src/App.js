@@ -1,10 +1,10 @@
 import './App.css';
-import Cuadricula from './Components/Cuadricula/Cuadricula';
+import Calculator from './Components/Calculator/Calculator';
 
 function App() {
   return (
     <div className="App">
-        <Cuadricula />
+      <Calculator />
     </div>
   );
 }
