@@ -33,6 +33,11 @@ class Calculator extends React.Component {
             case 'clear':
                 this.setState({ data: '', operation : false});
                 break;
+            case 'delete':
+                console.log(this.state.data.length);
+                const newNumber = this.state.data.substring(0, this.state.data.length-1);
+                this.setState({ data: newNumber, operation : false});
+                break;
             case 'equal':
                 result = this.calculate();
                 this.state.reminder.push(this.state.data + ' = ' + result);
@@ -96,21 +101,22 @@ class Calculator extends React.Component {
                     <Button onClick={this.handleClick} label="1" value="1" />
                     <Button onClick={this.handleClick} label="0" value="0" />
 
-                    <Button onClick={this.handleClick} label="/" value="/" />
+                    <Button onClick={this.handleClick} label="SUPR" value="delete" />
                     <Button onClick={this.handleClick} label="8" value="8" />
                     <Button onClick={this.handleClick} label="5" value="5" />
                     <Button onClick={this.handleClick} label="2" value="2" />
                     <Button onClick={this.handleClick} label="." value="." />
 
-                    <Button onClick={this.handleClick} label="x" value="*" />
+                    <Button onClick={this.handleClick} label="" value="" />
                     <Button onClick={this.handleClick} label="9" value="9" />
                     <Button onClick={this.handleClick} label="6" value="6" />
                     <Button onClick={this.handleClick} label="3" value="3" />
-                    <Button onClick={this.handleClick} label="" value="null" />
+                    <Button onClick={this.handleClick} label="=" value="equal" />
 
+                    <Button onClick={this.handleClick} label="/" value="/" />
+                    <Button onClick={this.handleClick} label="x" value="*" />
                     <Button onClick={this.handleClick} label="-" value="-" />
                     <Button onClick={this.handleClick} label="+" size="2" value="+" />
-                    <Button onClick={this.handleClick} label="=" size="2" value="equal" />
                 </Keys>        
             </div>
         )
