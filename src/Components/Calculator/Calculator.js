@@ -19,11 +19,22 @@ class Calculator extends React.Component {
     calculate = () => {
         var result;
         try {
+            /* eslint no-eval: 0 */
             result = eval(this.state.data);
         } catch (e) {
             this.setState({data: 'error'})
         }
         return result;
+    }
+
+    operations = (result, value) => {
+        if(this.state.operation === false) {
+            this.setState({ data: this.state.data + value, operation : true});
+        } else {
+            result = this.calculate();
+            this.state.reminder.push(this.state.data + ' = ' + result);
+            this.setState({ data: result + value, operation : true });
+        }
     }
 
     handleClick = e => {
@@ -33,8 +44,10 @@ class Calculator extends React.Component {
             case 'clear':
                 this.setState({ data: '', operation : false});
                 break;
+            case 'clearReminder':
+                this.setState({ data: '', operation : false, reminder: []});
+                break;
             case 'delete':
-                console.log(this.state.data.length);
                 const newNumber = this.state.data.substring(0, this.state.data.length-1);
                 this.setState({ data: newNumber, operation : false});
                 break;
@@ -44,45 +57,16 @@ class Calculator extends React.Component {
                 this.setState({ data: result, operation : false});
                 break;
             case '+':
-                console.log(this.state.operation);
-                if(this.state.operation === false) {
-                    this.setState({ data: this.state.data + value, operation : true});
-                } else {
-                    result = this.calculate();
-                    this.state.reminder.push(this.state.data + ' = ' + result);
-                    console.log(this.state.reminder);
-                    this.setState({ data: result + value, operation : true });
-                }
+                this.operations(result, value);
                 break;
             case '-':
-                console.log(this.state.operation);
-                if(this.state.operation === false) {
-                    this.setState({ data: this.state.data + value, operation : true});
-                } else {
-                    result = this.calculate();
-                    this.state.reminder.push(this.state.data + ' = ' + result);
-                    this.setState({ data: result + value, operation : true });
-                }
+                this.operations(result, value);
                 break;
             case '*':
-                console.log(this.state.operation);
-                if(this.state.operation === false) {
-                    this.setState({ data: this.state.data + value, operation : true });
-                } else {
-                    result = this.calculate();
-                    this.state.reminder.push(this.state.data + ' = ' + result);
-                    this.setState({ data: result + value, operation : true });
-                }
+                this.operations(result, value);
                 break;
             case '/':
-                console.log(this.state.operation);
-                if(this.state.operation === false) {
-                    this.setState({ data: this.state.data + value, operation : true});
-                } else {
-                    result = this.calculate();
-                    this.state.reminder.push(this.state.data + ' = ' + result);
-                    this.setState({ data: result + value, operation : true });
-                }
+                this.operations(result, value);
                 break;
             default:
                 this.setState({ data: this.state.data + value});
@@ -101,13 +85,13 @@ class Calculator extends React.Component {
                     <Button onClick={this.handleClick} label="1" value="1" />
                     <Button onClick={this.handleClick} label="0" value="0" />
 
-                    <Button onClick={this.handleClick} label="SUPR" value="delete" />
+                    <Button onClick={this.handleClick} label="AC" value="clearReminder" />
                     <Button onClick={this.handleClick} label="8" value="8" />
                     <Button onClick={this.handleClick} label="5" value="5" />
                     <Button onClick={this.handleClick} label="2" value="2" />
                     <Button onClick={this.handleClick} label="." value="." />
 
-                    <Button onClick={this.handleClick} label="" value="" />
+                    <Button onClick={this.handleClick} label="SUPR" value="delete" />
                     <Button onClick={this.handleClick} label="9" value="9" />
                     <Button onClick={this.handleClick} label="6" value="6" />
                     <Button onClick={this.handleClick} label="3" value="3" />
