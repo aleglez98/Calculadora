@@ -1,5 +1,5 @@
 .Button {
-    background: #cad2c5;
+    background: black;
     display: flex;
     border: 1px solid rgba(0,0,0,0.05);
     box-sizing: border-box;
@@ -7,7 +7,7 @@
     justify-content: center;
     width: 25%;
     font-size: 24px;
-    color: rgba(0, 0, 0, 0.5);
+    color: orange;
     height: 20%;
     min-width: 25%;
 }

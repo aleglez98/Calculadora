@@ -2,8 +2,8 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background: #2b293d;
+    background: black;
     height: 20%;
-    color: #80c9c9;
+    color: orange;
     font-size: 24px;
 }

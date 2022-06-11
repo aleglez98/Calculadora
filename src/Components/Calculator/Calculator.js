@@ -12,7 +12,7 @@ class Calculator extends React.Component {
         this.state = { 
             data : '',
             operation : false,
-            reminder : '' 
+            reminder : [] 
         }
     }
 
@@ -35,6 +35,7 @@ class Calculator extends React.Component {
                 break;
             case 'equal':
                 result = this.calculate();
+                this.state.reminder.push(this.state.data + ' = ' + result);
                 this.setState({ data: result, operation : false});
                 break;
             case '+':
@@ -43,7 +44,9 @@ class Calculator extends React.Component {
                     this.setState({ data: this.state.data + value, operation : true});
                 } else {
                     result = this.calculate();
-                    this.setState({ data: result + value, operation : true, reminder : this.state.data + ' = ' + result});
+                    this.state.reminder.push(this.state.data + ' = ' + result);
+                    console.log(this.state.reminder);
+                    this.setState({ data: result + value, operation : true });
                 }
                 break;
             case '-':
@@ -52,7 +55,8 @@ class Calculator extends React.Component {
                     this.setState({ data: this.state.data + value, operation : true});
                 } else {
                     result = this.calculate();
-                    this.setState({ data: result + value, operation : true, reminder : this.state.data + ' = ' + result});
+                    this.state.reminder.push(this.state.data + ' = ' + result);
+                    this.setState({ data: result + value, operation : true });
                 }
                 break;
             case '*':
@@ -61,7 +65,8 @@ class Calculator extends React.Component {
                     this.setState({ data: this.state.data + value, operation : true });
                 } else {
                     result = this.calculate();
-                    this.setState({ data: result + value, operation : true, reminder : this.state.data + ' = ' + result});
+                    this.state.reminder.push(this.state.data + ' = ' + result);
+                    this.setState({ data: result + value, operation : true });
                 }
                 break;
             case '/':
@@ -70,7 +75,8 @@ class Calculator extends React.Component {
                     this.setState({ data: this.state.data + value, operation : true});
                 } else {
                     result = this.calculate();
-                    this.setState({ data: result + value, operation : true, reminder : this.state.data + ' = ' + result});
+                    this.state.reminder.push(this.state.data + ' = ' + result);
+                    this.setState({ data: result + value, operation : true });
                 }
                 break;
             default:

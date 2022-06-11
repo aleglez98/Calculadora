@@ -4,9 +4,12 @@ import './Reminder.css';
 class Reminder extends React.Component {
     
     render() {
+        const listOperations = this.props.data.map((operation) =>
+            <li key={operation.toString()}>{operation}</li>
+        )
         return(
             <div className="Reminder">
-                {this.props.data}
+                <ul>{listOperations}</ul>
             </div>
         )
     }

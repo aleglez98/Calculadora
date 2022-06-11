@@ -2,9 +2,19 @@
 .Reminder {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    background: #1a03ee;
-    height: 40%;
-    color: #f6f8f8;
+    background: black;
+    height: 50%;
+    overflow: hidden;
+    overflow-y: scroll;
+    color: orange;
     font-size: 24px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: grey;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.Reminder::-webkit-scrollbar {
+    display: none;
 }
